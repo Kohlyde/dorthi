@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Chat and Display</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    /* Base Page Layout */
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex; /* horizontal layout: left + right columns */
+    }
+
+    /* Left Display Section: 30% */
+    .left-display {
+      width: 30%;
+      background-color: #222;
+      padding: 20px;
+      overflow-y: auto;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Right Chat Section: 70% */
+    .right-chat {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* Start from top; we’ll handle spacing via sub-containers */
+      background: radial-gradient(circle, rgba(255,0,0,0.3), #000 90%);
+      position: relative;
+      overflow-y: auto;
+    }
+
+    /* 1) The initial container that holds the animated circle at center. */
+    .animation-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 2) Circle & Eyeball Animations */
+    .circle {
+      width: 120px;
+      height: 120px;
+      background: #000;
+      border: 4px solid red;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: rise 2s ease-out forwards; /* "rise" for 2s */
+      opacity: 0; /* Start invisible, fade in quickly */
+    }
+
+    @keyframes rise {
+      0%   { transform: translateY(100%); opacity: 0; }
+      20%  { opacity: 1; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .eyeball {
+      width: 20px; height: 20px;
+      background: white;
+      border-radius: 50%;
+      animation: lookAround 3s infinite;
+    }
+
+    @keyframes lookAround {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-5px, 2px); }
+      50% { transform: translate(3px, -3px); }
+      75% { transform: translate(-2px, 4px); }
+    }
+
+    /* 3) The chat container that will fade in AFTER the circle animation completes */
+    .chat-container {
+      display: none;     /* hidden at the start */
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      flex: 1;           /* fill available space */
+      animation: fadeIn 1s ease-out forwards; 
+      animation-delay: 2.1s; /* wait until circle animation is about done */
+      overflow-y: auto;
+    }
+
+    @keyframes fadeIn {
+      to { display: flex; opacity: 1; }
+    }
+
+    /* Chat Box (scroll area for messages) */
+    .chat-box {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    .chat-message {
+      padding: 10px;
+      border-radius: 5px;
+      margin: 5px 0;
+      word-break: break-word;
+    }
+
+    .chat-left {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: left;
+    }
+
+    .chat-right {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      text-align: right;
+    }
+
+    /* Chat Input */
+    #input-box {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Left Display Section (NOT for Chat) -->
+  <div class="left-display" id="display-box">
+    <h3>Display Box</h3>
+    <p>This left side is solely for your extra content or "terminal" or anything else you wish to display.</p>
+    <!-- Add or build whatever you want here later -->
+  </div>
+
+  <!-- Right Chat Section -->
+  <div class="right-chat">
+    <!-- 1) Animation container with the circle in center -->
+    <div class="animation-container">
+      <div class="circle">
+        <div class="eyeball"></div>
+      </div>
+    </div>
+
+    <!-- 2) Actual Chat UI that fades in AFTER circle animation -->
+    <div class="chat-container" id="chatContainer">
+      <div class="chat-box" id="chat-display"></div>
+      <input type="text" id="input-box" class="form-control" placeholder="Type your message and press Enter">
+    </div>
+  </div>
+
+  <!-- JavaScript for Chat Logic -->
+  <script>
+    const chatDisplay = document.getElementById('chat-display');
+    const inputBox = document.getElementById('input-box');
+
+    // Some example "cuss words" to filter
+    const cussWords = ["fuck", "shit", "bitch", "asshole", "dick"];
+
+    // Unique responses
+    const uniqueReplies = [
+      "That's interesting!",
+      "Tell me more about that.",
+      "I'm here to listen.",
+      "Can you elaborate?",
+      "Let's dive deeper into that."
+    ];
+    let lastReplyIndex = -1;
+
+    /**
+     * Creates a new chat message in the display.
+     * @param text {string} - The text to display
+     * @param isLeft {boolean} - true if message is "left" style (bot?), false for user
+     */
+    function addMessage(text, isLeft) {
+      const message = document.createElement('div');
+      message.className = `chat-message ${isLeft ? 'chat-left' : 'chat-right'}`;
+      message.textContent = text;
+      chatDisplay.appendChild(message);
+      // Scroll to bottom
+      chatDisplay.scrollTop = chatDisplay.scrollHeight;
+    }
+
+    /**
+     * Gets a unique reply from the array, ensuring no immediate repeats.
+     */
+    function getUniqueReply() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * uniqueReplies.length);
+      } while (index === lastReplyIndex);
+      lastReplyIndex = index;
+      return uniqueReplies[index];
+    }
+
+    /**
+     * Listens for "Enter" key to submit chat input.
+     */
+    inputBox.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        const userInput = inputBox.value.trim().toLowerCase();
+        inputBox.value = '';
+
+        // Check for cuss words
+        if (cussWords.some(word => userInput.includes(word))) {
+          addMessage("End of line!", true);
+          return;
+        }
+
+        // User message
+        addMessage(userInput, false);
+
+        // Simulate delayed bot response
+        setTimeout(() => {
+          addMessage(getUniqueReply(), true);
+        }, 1500);
+      }
+    });
+  </script>
+</body>
+</html>

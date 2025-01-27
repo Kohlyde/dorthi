@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>V
+ariant #13</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="style
+sheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/
+highlight.js/11.11.1/es/core.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/s
+tyles/sunburst.css"><style>body,html{margin:0;padding:0;height:100%;width:100%;background:#101010;color:#f4f4f4;font-family:'Courier Ne
+w',Courier,monospace}.container{margin:0 auto;width:90%;height:100%;display:flex;flex-direction:row;justify-content:flex-start;align-ite
+ms:center;position:relative}.chat{width:30%;height:80%;display:flex;flex-direction:column;justify-content:space-between;margin-right:15p
+x;align-self:center}.terminal{width:55%;height:80%;background:#1a1a1a;border:2px solid #444;border-radius:8px;padding:15px;overflow-y:au
+to;color:#c0c0c0;font-size:1.1em;align-self:center}.circle{position:absolute;right:10px;top:10px;width:130px;height:130px;background:#12
+1212;border:5px solid #ff5733;border-radius:50%;animation:glow 3s infinite alternate;display:flex;justify-content:center;align-items:cen
+ter}.eyeball{width:22px;height:22px;background:#fff;border-radius:50%;animation:lookAround 3s infinite}@keyframes glow{0%{opacity:1}100%
+{opacity:0.6}}@keyframes lookAround{0%,100%{transform:translate(0,0)}25%{transform:translate(-7px,4px)}50%{transform:translate(5px,-5p
+x)}75%{transform:translate(-3px,6px)}}.chat-message{margin:4px 0}.chat-left{text-align:left}.chat-right{text-align:right}</style></head>
+<body><div class="container"><div class="chat"><div id="chat-display" class="chat-display"></div><input type="text" id="input-box" class
+="form-control chat-input" placeholder="Type your message and press Enter"></div><div class="terminal" id="render-window"><pre><code><p>
+Terminal output will appear here.</p></code></pre></div><div class="circle"><div class="eyeball"></div></div></div><script>const chatDis
+play=document.getElementById('chat-display');const inputBox=document.getElementById('input-box');const renderWindow=document.getElementB
+yId('render-window');const cussWords=["fuck","shit","bitch","asshole","dick"];const uniqueReplies=["That's intriguing!","I'm all ear
+s.","What more can you tell me?","Tell me more about that.","Sounds interesting!"];let lastReplyIndex=-1;function addMessage(t,e){const
+r=document.createElement('div');r.className=`chat-message ${e?'chat-left':'chat-right'}`;r.textContent=t;chatDisplay.appendChild(r);chat
+Display.scrollTop=chatDisplay.scrollHeight}function addRenderMessage(t){const e=document.createElement('p');e.textContent=t;renderWindo
+w.appendChild(e);renderWindow.scrollTop=renderWindow.scrollHeight}function getUniqueReply(){let t;do{t=Math.floor(Math.random()*uniqueRe
+plies.length)}while(t===lastReplyIndex);lastReplyIndex=t;return uniqueReplies[t]}inputBox.addEventListener('keyup',e=>{if(e.key==="Ente
+r"){const t=inputBox.value.toLowerCase().trim();inputBox.value="";if(cussWords.some(a=>t.includes(a))){addMessage("Oops! That’s inapprop
+riate!",true);addRenderMessage(`Blocked input: "${t}" due to inappropriate language.`);return}addMessage(t,false);addRenderMessage(`User
+input: "${t}"`);setTimeout(()=>{const a=getUniqueReply();addMessage(a,true);addRenderMessage(`System replied: "${a}"`)},1500)}});</scrip
+t></body></html>

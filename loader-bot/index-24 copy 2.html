@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat and Terminal Interaction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 90%;
+      height: 80%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .terminal {
+      width: 48%;
+      height: 100%;
+      background: #000;
+      border-radius: 5px;
+      padding: 20px;  /* White padding added */
+      color: rgb(100, 96, 71);
+      font-family: 'Courier New', Courier, monospace;
+      overflow-y: auto;
+      box-sizing: border-box;
+      border: 2px solid #555;  /* Adding border for distinction */
+    }
+
+    .chat {
+      width: 48%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #222;
+      border-radius: 5px;
+      padding: 20px;  /* White padding added */
+      box-sizing: border-box;
+      border: 2px solid #555;  /* Adding border for distinction */
+    }
+
+    .circle {
+      width: 120px;
+      height: 120px;
+      background: #000;
+      border: 4px solid red;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .eyeball {
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+    }
+
+    #input-box {
+      width: 100%;
+      font-size: 1em;
+      padding: 8px;
+      margin-top: 20px;
+    }
+
+    /* Chat bubble styles */
+    .chat-message {
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      background-color: #444;
+      color: white;
+      max-width: 80%;
+    }
+
+    .chat-left {
+      background-color: #555;
+    }
+
+    .chat-right {
+      background-color: #0066cc;
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Eyeball in the center -->
+  <div class="circle">
+    <div class="eyeball"></div>
+  </div>
+
+  <!-- Main container (Chat & Terminal Panels) -->
+  <div class="container">
+    <div class="chat">
+      <div id="chat-display" class="chat-display"></div>
+      <input type="text" id="input-box" class="form-control chat-input" placeholder="Type your message and press Enter">
+    </div>
+    <div class="terminal">
+      <pre><code><p>Terminal output will appear here.</p></code></pre>
+    </div>
+  </div>
+
+  <script>
+    const chatDisplay = document.getElementById('chat-display');
+    const inputBox = document.getElementById('input-box');
+    const terminal = document.querySelector('.terminal');
+    const cussWords = ["fuck", "shit", "bitch", "asshole", "dick"];
+    const uniqueReplies = ["That's interesting!", "Tell me more about that.", "I'm here to listen.", "Can you elaborate?", "Let's dive deeper into that."];
+    let lastReplyIndex = -1;
+
+    // Function to add chat message
+    function addMessage(text, isLeft) {
+      const message = document.createElement('div');
+      message.className = `chat-message ${isLeft ? 'chat-left' : 'chat-right'}`;
+      message.textContent = text;
+      chatDisplay.appendChild(message);
+      chatDisplay.scrollTop = chatDisplay.scrollHeight;
+    }
+
+    // Function to add terminal output
+    function addTerminalMessage(text) {
+      const message = document.createElement('p');
+      message.textContent = text;
+      terminal.appendChild(message);
+      terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    // Event listener for user input
+    inputBox.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        const userInput = inputBox.value.toLowerCase().trim();
+        inputBox.value = '';
+
+        if (cussWords.some(word => userInput.includes(word))) {
+          addMessage("End of line!", true);
+          addTerminalMessage(`Blocked input: "${userInput}" due to inappropriate language.`);
+          return; // Block inappropriate language
+        }
+
+        addMessage(userInput, false); // Add user message to chat
+        addTerminalMessage(`User input: "${userInput}"`); // Output to terminal
+
+        setTimeout(() => {
+          const reply = getUniqueReply();
+          addMessage(reply, true); // Add system reply to chat
+          addTerminalMessage(`System replied: "${reply}"`); // Output system reply to terminal
+        }, 1500); // Reply after delay
+      }
+    });
+
+    // Function to generate unique system reply
+    function getUniqueReply() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * uniqueReplies.length);
+      } while (index === lastReplyIndex);
+      lastReplyIndex = index;
+      return uniqueReplies[index];
+    }
+
+    // Add natural movement of the eyeball based on mouse position
+    const eyeball = document.querySelector('.eyeball');
+
+    document.addEventListener('mousemove', (e) => {
+      const eyeballRect = eyeball.getBoundingClientRect();
+      const centerX = eyeballRect.left + eyeballRect.width / 2;
+      const centerY = eyeballRect.top + eyeballRect.height / 2;
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+      const angle = Math.atan2(deltaY, deltaX);
+      const distance = Math.min(Math.sqrt(deltaX * deltaX + deltaY * deltaY), 10); // Max distance
+
+      const offsetX = Math.cos(angle) * distance;
+      const offsetY = Math.sin(angle) * distance;
+
+      eyeball.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px)`;
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

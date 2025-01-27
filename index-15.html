@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Chat with Dynamic Rendering</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/es/core.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/sunburst.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 95%;
+            background-color: #101010;
+            color: #f4f4f4;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            height: 100%;
+        }
+        .terminal {
+            width: 60%;
+            height: 90%;
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 1.1em;
+            color: #c0c0c0;
+            overflow-y: auto;
+            border: 2px solid #444;
+        }
+        .circle {
+            width: 130px;
+            height: 130px;
+            background: #121212;
+            border: 5px solid #ff5733;
+            border-radius: 50%;
+            animation: glow 3s infinite alternate;
+        }
+        .eyeball {
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            animation: lookAround 3s infinite;
+        }
+        @keyframes glow {
+            from { opacity: 1; }
+            to { opacity: 0.6; }
+        }
+        @keyframes lookAround {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-7px, 4px); }
+            50% { transform: translate(5px, -5px); }
+            75% { transform: translate(-3px, 6px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="terminal" id="render-window">
+            <pre><code>
+                <style>
+                        body,  html {
+                        margin: 0;
+                        padding: 0;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: black;
+                     }
+                #typewriter {
+                        font-family: monospace;
+                        white-space: pre;
+                        overflow: hidden;
+                        background-color: black;
+                        color: rgb(167, 155, 130);
+                        border-right: .15em solid orange;
+                        animation: caret 0.75s step-end infinite;
+                }
+                
+                @keyframes caret {
+                        from { border-right-color: orange; }
+                        to { border-right-color: transparent; }
+                }
+                </style>
+                <div id="typewriter"></div>
+                
+                <script>
+                const text = `Section I: Origins of Genre House
+                Volume I: Frequency Shifts: The Life Cycle of Dubstep in the 21st Century
+                Part 3: The Birth and Evolution of House Music
+                The birth of House music is intrinsically tied to the socio-political landscape of the 1980s,
+                particularly the emergence of the genre in Chicago, a city at the intersection of cultural 
+                fusion, technological innovation, and racial stratification. House music was not only a reflection 
+                of the urban experience but also an expression of marginalized communities’ desire to create spaces
+                of liberation and empowerment within the social constraints of the time. The genre arose from a convergence 
+                of factors including the expansion of electronic music technology, the nightclub culture, and the intense desire 
+                for musical freedom among the city’s Black, Latino, and LGBTQ+ communities (Tucker, 2016). As a movement, House
+                represents a space where cultural boundaries and genre-specific definitions are pushed to their limits, marking a critical
+                evolution in both musical and social terms (Reynolds, 2012).
+                1.1 The Foundations of House Music
+                The earliest seeds of House music can be traced back to the emergence of disco in the late 
+                1970s, a genre that laid the groundwork for House's distinct stylistic evolution. Disco’s rise, 
+                particularly in urban dance clubs, allowed for the first time a crossover between diverse communities through a shared 
+                experience of rhythm and escapism (Harris, 2006). The cultural and economic backdrop of Chicago in the early 1980s created 
+                an ideal environment for a genre like House to emerge. At the heart of this transformation was the development of the Roland 
+                TR-808 and TR-909 drum machines, which revolutionized music production by providing producers with affordable, easy-to-use instruments 
+                that could generate synthetic beats, basslines, and melodic lines (Punkin, 2010).
+                The sound of the 808 and 909 drum machines, with their deep, resonant bass kicks and sharp, snappy snare hits, became a signature 
+                element of the early House sound. However, beyond the technological innovation, the emergence of House music also coincided with the 
+                proliferation of discotheques and underground dance parties, where DJing itself was becoming an art form. Frankie Knuckles, 
+                widely regarded as one of the genre's founding figures, played a pivotal role in the development of House by blending elements 
+                of disco, funk, soul, and electronic music (Miller, 2017). His pioneering work at Chicago’s Warehouse club is often considered the 
+                birthplace of the genre, with the sound that emerged from these early DJ sets laying the foundation for the genre’s defining traits—deep 
+                basslines, four-on-the-floor rhythms, and a consistent emphasis on the dancefloor experience (Butler, 2014).
+                House music’s emergence was also a reaction to the commercialization and mainstreaming of disco. As disco’s popularity waned, 
+                the community-driven culture of underground dance music remained strong in urban hubs like Chicago. Here, the genre's early 
+                adopters, including Knuckles, Larry Heard, and Ron Hardy, pushed House music into new territories by combining traditional 
+                African-American musical forms with modern electronic production (Sullivan, 2019). The resulting sound, which was deep, hypnotic, and often 
+                infused with soulful vocal samples, resonated with a community looking for musical refuge and emotional expression in the face of social 
+                and economic
+        1.2 The Technological Revolution and the Birth of the Dancefloor
+        A major technological shift in the 1980s played a crucial role in House music's formation: the advent of affordable synthesizers, drum 
+        machines, and sequencers gave aspiring producers the tools they needed to create their own tracks (Hernandez, 2012). The Roland TR-808,
+        which debuted in 1980, became an iconic tool within the genre, providing producers with a unique, accessible sound that had previously been
+        unattainable through traditional acoustic instruments. The drum machine’s deep bass hits and sharp snares allowed producers to create the
+        distinctive "four-on-the-floor" rhythm that would define House music (Reynolds, 2012).
+        In parallel, the development of early sequencers, such as the Roland TB-303 bassline synthesizer, enabled producers to create intricate, 
+        looping basslines and melody patterns that were characteristic of the genre's growing sonic palette (Friedlander, 2014). The layering of 
+        synthesized bass, percussive beats, and soulful vocal samples became the hallmark of House music, forging an immersive and rhythmic sound that 
+        provided an ideal backdrop for the ecstatic, all-night dancing that was becoming a hallmark of club culture (Katz, 2010). Producers and DJs began
+        to manipulate sound in ways that allowed for new forms of musical experimentation, ushering in a new era of electronic dance music.
+        1.3 The Role of Clubs and DJ Culture
+        The cultural and social environment surrounding House music was essential to its development. As the genre was emerging, Chicago’s underground
+        club scene became a critical space for fostering creativity and experimentation. Clubs such as the Warehouse and the Music Box became 
+        central to the development of House music, as DJs began to take on a central role in curating the musical experience for partygoers. It 
+        was at the Warehouse, where Frankie Knuckles served as the house DJ, that the sound of House music was first refined and popularized (Harris, 2006).
+        In these early years, the DJ played a pivotal role not just in selecting tracks, but in blending and manipulating them to create a continuous
+        flow of music that kept dancers engaged and immersed. DJs, such as Knuckles and Ron Hardy, began experimenting with the mixing of records 
+        to achieve a fluid and seamless experience for the audience. By extending and altering songs with careful beat-matching, creative use of 
+        effects, and live remixing, these early DJs were key in shaping the way House music would be experienced on the dancefloor (Williams, 2015). 
+        This interaction between the DJ and the crowd created a dynamic relationship that was not only about the music but also about a shared communal experience of freedom and release.
+        House music’s popularity quickly spread beyond Chicago, influencing the club scenes in New York, Detroit, and Europe. As the genre grew, 
+        it adapted to local contexts, but the foundational elements—synthesizer-driven basslines, four-on-the-floor rhythms, and soulful vocal
+        samples—remained constants. In particular, the development of acid house in the UK, which was influenced by Chicago’s deep house sound,
+        helped to further globalize the genre and integrate it into a worldwide network of electronic dance culture (Chant, 2011). In the UK, 
+        the use of the Roland TB-303 bassline machine created the distinctive squelchy sound associated with acid house, further diversifying the 
+        genre’s sonic palette.
+        1.4 The Cultural and Social Implications
+        House music was not just a musical style but a cultural movement that represented resistance against the pressures and limitations of mainstream 
+        society. For many Black, Latino, and LGBTQ+ individuals in Chicago, the Warehouse was a space where they could express themselves freely and connect 
+        with others outside the confines of conventional social roles (Vasquez, 2017). In a city grappling with issues of racial segregation and economic disparity,
+        House music became an outlet for marginalized communities to assert their identities and create a collective sense of belonging (McLeod, 2009).
+        This sense of cultural and social freedom was encapsulated in the genre’s lyrics and themes. House tracks often focused on messages of love, unity, 
+        and empowerment, drawing from the rich traditions of Black gospel and soul music. Vocal samples taken from soul, gospel, and disco records provided a 
+        sense of nostalgia and continuity, while the repetitive, hypnotic nature of the music invited listeners into a transcendent, spiritual experience (Berland, 2014). 
+        These themes resonated deeply with communities facing social marginalization and economic struggle, providing a space for liberation both on and off the dancefloor.
+        Moreover, House music became a form of protest, a direct response to the mainstream culture that often excluded certain communities. As a genre that flourished 
+        in underground clubs and queer spaces, House music was part of a larger movement that sought to challenge traditional gender norms and celebrate sexual 
+        liberation (Auster, 2015). The inclusivity of House, where individuals of all identities could come together to celebrate a shared love for music, made it a 
+        significant cultural force and an important part of the larger socio-political landscape of the 1980s and beyond.
+        ________________________________________
+        References
+        Auster, P. (2015). Reaching across boundaries: Queer dance culture and the roots of House music. Dance Studies Journal, 23(4), 61-75.
+        Berland, J. (2014). Sounding spirituality: The connection between House music and gospel traditions. Music and Religion, 10(2), 112-130.
+        Boone, P. (2018). The art of resistance: House music and social movements. The Journal of Popular Culture, 25(3), 90-105.
+        Butler, M. (2014). DJing and the politics of sound: Frankie Knuckles and the rise of House. Social Sound Studies, 19(3), 235-249.
+        Chant, T. (2011). Acid house in the UK: The evolution of a sound. British Music Review, 5(2), 122-134.
+        Friedlander, S. (2014). The birth of electronic dance music: Tools and technologies in early House music production. Music Technology Review, 8(1), 52-69.
+        Harris, A. (2006). The role of disco in the emergence of House music. Journal of American Music, 29(1), 53-67.
+        Hernandez, R. (2012). Synthesizing a movement: The electronic technologies that shaped House music. Musicology Today, 4(1), 1-14.
+        Katz, M. (2010). House music: The early years and its cultural impact. Journal of Music History, 22(3), 220-230.
+        McLeod, K. (2009). House music and community building in Chicago. Journal of Urban Culture, 15(2), 43-58.
+        Miller, A. (2017). Chicago's Warehouse and the birth of House. Dancefloor Chronicles, 12(1), 9-22.
+        Punkin, T. (2010). The Roland TR-808 and its influence on House music production. Music Engineering Review, 17(3), 188-201.
+        Reynolds, S. (2012). Energy flash: A history of rave and dance culture. Faber & Faber.
+        Ronald, B. (2011). Basslines and beats: The evolution of House music in Chicago. Urban Soundscapes, 3(1), 45-58.
+        Sullivan, E. (2019). Social movements and House music: The transformative power of dance culture. Social Music Studies, 9(2), 118-133.
+        Vasquez, R. (2017). Queer dance spaces and the formation of House music. The Journal of Queer Studies in Music, 6(4), 44-59.
+        Williams, M. (2015). The DJ as cultural curator: How Frankie Knuckles and other pioneers shaped House music. Music and Society, 18(2), 89-104.
+    </p></code></pre></div>
+    <div class="chat">
+      <div id="chat-display" class="chat-display"></div>
+      <input type="text" id="input-box" class="form-control chat-input" placeholder="Type your message and press Enter">
+    </div>
+    <div class="circle"><div class="eyeball"></div></div>
+  </div>
+  <script>
+    const chatDisplay = document.getElementById('chat-display');
+    const inputBox = document.getElementById('input-box');
+    const renderWindow = document.getElementById('render-window');
+    const cussWords = ["fuck", "shit", "bitch", "asshole", "dick"];
+    const uniqueReplies = ["That's intriguing!", "I'm all ears.", "What more can you tell me?", "Tell me more about that.", "Sounds interesting!"];
+    let lastReplyIndex = -1;
+
+    function addMessage(text, isLeft) {
+      const message = document.createElement('div');
+      message.className = `chat-message ${isLeft ? 'chat-left' : 'chat-right'}`;
+      message.textContent = text;
+      chatDisplay.appendChild(message);
+      chatDisplay.scrollTop = chatDisplay.scrollHeight;
+    }
+
+    function addRenderMessage(text) {
+      const output = document.createElement('p');
+      output.textContent = text;
+      renderWindow.appendChild(output);
+      renderWindow.scrollTop = renderWindow.scrollHeight;
+    }
+
+    function getUniqueReply() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * uniqueReplies.length);
+      } while (index === lastReplyIndex);
+      lastReplyIndex = index;
+      return uniqueReplies[index];
+    }
+
+    inputBox.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        const userInput = inputBox.value.toLowerCase().trim();
+        inputBox.value = '';
+
+        if (cussWords.some(word => userInput.includes(word))) {
+          addMessage("Oops! That’s inappropriate!", true);
+          addRenderMessage(`Blocked input: "${userInput}" due to inappropriate language.`);
+          return;
+        }
+
+        addMessage(userInput, false);
+        addRenderMessage(`User input: "${userInput}"`);
+
+        setTimeout(() => {
+          const reply = getUniqueReply();
+          addMessage(reply, true);
+          addRenderMessage(`System replied: "${reply}"`);
+        }, 1500);
+      }
+    });
+  </script>
+</body>
+</p></code></pre></div></div></body></html>
+      </code></pre></div>
+    <div class="chat">
+      <div id="chat-display" class="chat-display"></div>
+      <input type="text" id="input-box" class="form-control chat-input" placeholder="Type your message and press Enter">
+    </div>
+    <div class="circle"><div class="eyeball"></div></div>
+  </div>
+  <script>
+    const chatDisplay = document.getElementById('chat-display');
+    const inputBox = document.getElementById('input-box');
+    const renderWindow = document.getElementById('render-window');
+    const cussWords = ["fuck", "shit", "bitch", "asshole", "dick"];
+    const uniqueReplies = ["That's intriguing!", "I'm all ears.", "What more can you tell me?", "Tell me more about that.", "Sounds interesting!"];
+    let lastReplyIndex = -1;
+
+    function addMessage(text, isLeft) {
+      const message = document.createElement('div');
+      message.className = `chat-message ${isLeft ? 'chat-left' : 'chat-right'}`;
+      message.textContent = text;
+      chatDisplay.appendChild(message);
+      chatDisplay.scrollTop = chatDisplay.scrollHeight;
+    }
+
+    function addRenderMessage(text) {
+      const output = document.createElement('p');
+      output.textContent = text;
+      renderWindow.appendChild(output);
+      renderWindow.scrollTop = renderWindow.scrollHeight;
+    }
+
+    function getUniqueReply() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * uniqueReplies.length);
+      } while (index === lastReplyIndex);
+      lastReplyIndex = index;
+      return uniqueReplies[index];
+    }
+
+    inputBox.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        const userInput = inputBox.value.toLowerCase().trim();
+        inputBox.value = '';
+
+        if (cussWords.some(word => userInput.includes(word))) {
+          addMessage("Oops! That’s inappropriate!", true);
+          addRenderMessage(`Blocked input: "${userInput}" due to inappropriate language.`);
+          return;
+        }
+
+        addMessage(userInput, false);
+        addRenderMessage(`User input: "${userInput}"`);
+
+        setTimeout(() => {
+          const reply = getUniqueReply();
+          addMessage(reply, true);
+          addRenderMessage(`System replied: "${reply}"`);
+        }, 1500);
+      }
+    });
+  </script>
+</body>
+</html>
+`

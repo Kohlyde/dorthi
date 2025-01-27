@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal with Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.css" integrity="sha512-VcyUgkobcyhqQl74HS1TcTMnLEfdfX6BbjhH8ZBjFU9YTwHwtoRtWSGzhpDVEJqtMlvLM2z3JIixUOu63PNCYQ==" crossorigin="anonymous"/><link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        .modal-body {
+            display: flex;
+            flex-wrap: wrap;
+            padding:1%;
+            padding:1%;
+            gap: 10px;
+        }
+        .form-check {
+            flex: 1 1 30%;
+            display: flex;
+            align-items: center;
+            padding-right: 5px;
+            border-right:#f1f1f1 1px solid;
+        }
+        .form-check-label {
+            margin-left: 5px;
+        }
+        .modal {
+            display: none;
+            background-color: #333;
+            color: white;
+            border-radius: 3em;
+            animation-delay: ease-in-out;
+            transition-duration: .3s;
+        }
+        .modal:active {
+            display: block;
+            background-color: #333;
+            color: white;
+            border-radius: 3em;
+        }
+        .modal-content {
+            background-color: #333;
+            color: white;
+        }
+        .modal-header {
+            background-color: #333;
+            color: white;
+        }
+        .modal-footer {
+            background-color: #333;
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #333;
+            color: white;
+            border: 1px solid white;
+        }
+        .btn-secondary:hover {
+            background-color: #333;
+            color: white;
+            border: 1px solid white;
+        }
+        .btn-secondary:focus {
+            background-color: #333;
+            color: white;
+            border: 1px solid white;
+        }
+        .btn-secondary:active {
+            background-color: #333;
+            color: white;
+            border: 1px solid white;
+        }
+        .btn-secondary:disabled {
+            background-color: #333;
+            color: white;
+            border: 1px solid white;
+        }
+        .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active {
+            background-color: #333;
+            color: white;
+            border: 1px solid
+             white;
+        }
+        .btn-secondary:not(:disabled):not(.disabled):active:focus {
+            background-color: #333;
+            color: white;
+            border: 1px solid white;
+        }    
+    </style>
+</head>
+<body>
+  <ul class="nav justify-content-center space-between">
+    <div class="dropdown" data-bs-theme="dark">
+      <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalDark">
+        Dark modal
+      </button>
+    </div>
+    <!-- Repeat the above div for each dropdown button -->
+  </ul>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalDark" tabindex="-1" aria-labelledby="exampleModalDarkLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalDarkLabel">Dark Modal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioA" value="A"><label class="form-check-label" for="radioA">A</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioASharp" value="A#"><label class="form-check-label" for="radioASharp">A#/Bb</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioB" value="B"><label class="form-check-label" for="radioB">B</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioC" value="C"><label class="form-check-label" for="radioC">C</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioCSharp" value="C#"><label class="form-check-label" for="radioCSharp">C#/Db</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioD" value="D"><label class="form-check-label" for="radioD">D</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioDSharp" value="D#"><label class="form-check-label" for="radioDSharp">D#/Eb</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioE" value="E"><label class="form-check-label" for="radioE">E</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioF" value="F"><label class="form-check-label" for="radioF">F</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioFSharp" value="F#"><label class="form-check-label" for="radioFSharp">F#/Eb</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioG" value="G"><label class="form-check-label" for="radioG">G</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioGSharp" value="G#"><label class="form-check-label" for="radioGSharp">G#/Ab</label></div>
+            </form>
+            <br>
+            <form>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioIonian" value="Ionian"><label class="form-check-label" for="radioIonian">Ionian</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioLydian" value="Lydian"><label class="form-check-label" for="radioLydian">Lydian</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioMixolydian" value="Mixolydian"><label class="form-check-label" for="radioMixolydian">Mixolydian</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioPhrygian" value="Phrygian"><label class="form-check-label" for="radioPhrygian">Phrygian</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioDorian" value="Dorian"><label class="form-check-label" for="radioDorian">Dorian</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioAeolian" value="Aeolian"><label class="form-check-label" for="radioAeolian">Aeolian</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioLocrian" value="Locrian"><label class="form-check-label" for="radioLocrian">Locrian</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioMajor" value="Major"><label class="form-check-label" for="radioE">E</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioNaturalMinor" value="NaturalMinor"><label class="form-check-label" for="radioNaturalMinor">NaturalMinor</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioMinor" value="Minor"><label class="form-check-label" for="radioMinor">Minor</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioPentatonic" value="Pentatonic"><label class="form-check-label" for="radioPentatonic">Pentatonic</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="exampleRadios" id="radioBlues" value="Blues"><label class="form-check-label" for="radioBlues">Blues</label></div>
+              </form>
+          </div>
+  
+          </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        $('#exampleModalDark').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var modal = $(this);
+            // You can add any additional JavaScript functionality here
+        });
+    });
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.js" integrity="sha512-lsA4IzLaXH0A+uH6JQTuz6DbhqxmVygrWv1CpC/s5vGyMqlnP0y+RYt65vKxbaVq+H6OzbbRtxzf+Zbj20alGw==" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
