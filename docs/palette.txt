@@ -1,0 +1,40 @@
+/* Coolors Exported Palette - https://coolors.co/000000-0f0f0f-171717-2f2f2f-a0a0a0-3779dd-676767-bfaa86-cfcfcf-ffffff */
+
+- Tailwind
+
+{ 'black': { DEFAULT: '#000000', 100: '#000000', 200: '#000000', 300: '#000000', 400: '#000000', 500: '#000000', 600: '#333333', 700: '#666666', 800: '#999999', 900: '#cccccc' }, 'night': { DEFAULT: '#0f0f0f', 100: '#030303', 200: '#060606', 300: '#090909', 400: '#0c0c0c', 500: '#0f0f0f', 600: '#3f3f3f', 700: '#6f6f6f', 800: '#9f9f9f', 900: '#cfcfcf' }, 'eerie_black': { DEFAULT: '#171717', 100: '#050505', 200: '#090909', 300: '#0e0e0e', 400: '#121212', 500: '#171717', 600: '#454545', 700: '#747474', 800: '#a2a2a2', 900: '#d1d1d1' }, 'jet': { DEFAULT: '#2f2f2f', 100: '#090909', 200: '#121212', 300: '#1c1c1c', 400: '#252525', 500: '#2f2f2f', 600: '#585858', 700: '#828282', 800: '#ababab', 900: '#d5d5d5' }, 'cadet_gray': { DEFAULT: '#a0a0a0', 100: '#202020', 200: '#404040', 300: '#606060', 400: '#818181', 500: '#a0a0a0', 600: '#b4b4b4', 700: '#c6c6c6', 800: '#d9d9d9', 900: '#ececec' }, 'blue_(crayola)': { DEFAULT: '#3779dd', 100: '#08182f', 200: '#102f5e', 300: '#18478d', 400: '#205fbc', 500: '#3779dd', 600: '#5f94e4', 700: '#87afeb', 800: '#afc9f1', 900: '#d7e4f8' }, 'dim_gray': { DEFAULT: '#676767', 100: '#141414', 200: '#292929', 300: '#3d3d3d', 400: '#525252', 500: '#676767', 600: '#858585', 700: '#a3a3a3', 800: '#c2c2c2', 900: '#e0e0e0' }, 'khaki': { DEFAULT: '#bfaa86', 100: '#2b2317', 200: '#56472d', 300: '#806a44', 400: '#a98d5c', 500: '#bfaa86', 600: '#ccbc9f', 700: '#d9ccb7', 800: '#e6ddcf', 900: '#f2eee7' }, 'timberwolf': { DEFAULT: '#cfcfcf', 100: '#292929', 200: '#535353', 300: '#7c7c7c', 400: '#a5a5a5', 500: '#cfcfcf', 600: '#d8d8d8', 700: '#e2e2e2', 800: '#ececec', 900: '#f5f5f5' }, 'white': { DEFAULT: '#ffffff', 100: '#333333', 200: '#666666', 300: '#999999', 400: '#cccccc', 500: '#ffffff', 600: '#ffffff', 700: '#ffffff', 800: '#ffffff', 900: '#ffffff' } }
+
+- CSV
+
+000000,0f0f0f,171717,2f2f2f,a0a0a0,3779dd,676767,bfaa86,cfcfcf,ffffff
+
+- With #
+
+#000000, #0f0f0f, #171717, #2f2f2f, #a0a0a0, #3779dd, #676767, #bfaa86, #cfcfcf, #ffffff
+
+- Array
+
+["000000","0f0f0f","171717","2f2f2f","a0a0a0","3779dd","676767","bfaa86","cfcfcf","ffffff"]
+
+- Object
+
+{"Black":"000000","Night":"0f0f0f","Eerie black":"171717","Jet":"2f2f2f","Cadet gray":"a0a0a0","Blue (Crayola)":"3779dd","Dim gray":"676767","Khaki":"bfaa86","Timberwolf":"cfcfcf","White":"ffffff"}
+
+- Extended Array
+
+[{"name":"Black","hex":"000000","rgb":[0,0,0],"cmyk":[0,0,0,100],"hsb":[0,0,0],"hsl":[0,0,0],"lab":[0,0,0]},{"name":"Night","hex":"0f0f0f","rgb":[15,15,15],"cmyk":[0,0,0,94],"hsb":[0,0,6],"hsl":[0,0,6],"lab":[4,0,0]},{"name":"Eerie black","hex":"171717","rgb":[23,23,23],"cmyk":[0,0,0,91],"hsb":[0,0,9],"hsl":[0,0,9],"lab":[8,0,0]},{"name":"Jet","hex":"2f2f2f","rgb":[47,47,47],"cmyk":[0,0,0,82],"hsb":[0,0,18],"hsl":[0,0,18],"lab":[19,0,0]},{"name":"Cadet gray","hex":"a0a0a0","rgb":[160,160,160],"cmyk":[0,0,0,37],"hsb":[0,0,63],"hsl":[0,0,63],"lab":[66,0,0]},{"name":"Blue (Crayola)","hex":"3779dd","rgb":[55,121,221],"cmyk":[75,45,0,13],"hsb":[216,75,87],"hsl":[216,71,54],"lab":[52,14,-57]},{"name":"Dim gray","hex":"676767","rgb":[103,103,103],"cmyk":[0,0,0,60],"hsb":[0,0,40],"hsl":[0,0,40],"lab":[44,0,0]},{"name":"Khaki","hex":"bfaa86","rgb":[191,170,134],"cmyk":[0,11,30,25],"hsb":[38,30,75],"hsl":[38,31,64],"lab":[71,2,21]},{"name":"Timberwolf","hex":"cfcfcf","rgb":[207,207,207],"cmyk":[0,0,0,19],"hsb":[0,0,81],"hsl":[0,0,81],"lab":[83,0,0]},{"name":"White","hex":"ffffff","rgb":[255,255,255],"cmyk":[0,0,0,0],"hsb":[0,0,100],"hsl":[0,0,100],"lab":[100,0,0]}]
+
+- XML
+
+<palette>
+  <color name="Black" hex="000000" r="0" g="0" b="0" />
+  <color name="Night" hex="0f0f0f" r="15" g="15" b="15" />
+  <color name="Eerie black" hex="171717" r="23" g="23" b="23" />
+  <color name="Jet" hex="2f2f2f" r="47" g="47" b="47" />
+  <color name="Cadet gray" hex="a0a0a0" r="160" g="160" b="160" />
+  <color name="Blue (Crayola)" hex="3779dd" r="55" g="121" b="221" />
+  <color name="Dim gray" hex="676767" r="103" g="103" b="103" />
+  <color name="Khaki" hex="bfaa86" r="191" g="170" b="134" />
+  <color name="Timberwolf" hex="cfcfcf" r="207" g="207" b="207" />
+  <color name="White" hex="ffffff" r="255" g="255" b="255" />
+</palette>
