@@ -286,7 +286,27 @@
   animation-duration: 0.3s;
   animation-fill-mode: both;
 }
+.header-letters {
+    display: inline-block;
+    overflow: hidden;
+}
 
+.letter {
+    display: inline-block;
+    opacity: 0;
+    animation: slideInRight 0.3s forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
 .slide-delay-1 { animation-delay: 0.1s; }
 .slide-delay-2 { animation-delay: 0.2s; }
 .slide-delay-3 { animation-delay: 0.3s; }
@@ -322,7 +342,21 @@
         <div id="main">
             <div id="chat-area">
                 <div id="header">
-                   <span class="animate__animated slide-in slide-delay-1">DORTHI | 👁</span>
+                   <div id="header">
+                      <div class="header-letters">
+                        <span class="letter" style="animation-delay: 0.1s;">D</span>
+                        <span class="letter" style="animation-delay: 0.2s;">O</span>
+                        <span class="letter" style="animation-delay: 0.3s;">R</span>
+                        <span class="letter" style="animation-delay: 0.4s;">T</span>
+                        <span class="letter" style="animation-delay: 0.5s;">H</span>
+                        <span class="letter" style="animation-delay: 0.6s;">I</span>
+                        <span class="letter" style="animation-delay: 0.7s;"> </span>
+                        <span class="letter" style="animation-delay: 0.8s;">|</span>
+                        <span class="letter" style="animation-delay: 0.9s;"> </span>
+                        <span class="letter" style="animation-delay: 1.0s;">👁</span>
+                      </div>
+  <button id="notes-button">Toggle Notes</button>
+</div>
                     <button id="notes-button">Toggle Notes</button>
                 </div>
                 <div id="chat">
