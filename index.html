@@ -2,935 +2,383 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat with Rendering and Eyeball</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/es/core.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/sunburst.css">
-  <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
-  <style>
-    .macondo-regular {
-      font-family: "Macondo", serif;
-      font-weight: 400;
-      font-size: small !important;
-      text-decoration: none;
-      font-style: normal;
-      color: rgb(100, 96, 71) !important;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dorothy Prime — Final</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
 
-    body,
-    html {
-      margin: 0;
+        body {
+            font-family: sans-serif;
+            background: #0e0e0e;
+            color: #fff;
+            height: 100vh;
+            overflow: hidden
+        }
 
-      height: 100%;
-      width: 100%;
-      background-color: #111;
-      color: rgb(100, 96, 71) !important;
-      font-family: "Macondo", serif;
-      font-size: small !important;
-      display: inline;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      overflow: hidden;
-    }
+        #app {
+            display: flex;
+            height: 100vh;
+            width: 100vw
+        }
 
-    .macondo-regular {
-      font-family: "Macondo", serif;
-      font-weight: 400;
-      font-style: normal;
-      font-weight: 400 !important;
-      font-size: small !important;
-      font-style: normal !important;
-      /* padding: 15px 25px; */
-    }
+        #sidebar {
+            width: 250px;
+            background: #0a0a0a;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+            border-right: 1px solid #1a1a1a;
+            transition: width 0.3s ease;
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px
+        }
 
-    .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      width: 90%;
-      height: 80%;
-      
-      position: absolute;
-      font-size: small !important;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      color: rgb(100, 96, 71) !important;
-    }
+        #sidebar.closed {
+            width: 60px
+        }
 
-    .terminal {
-      width: 48%;
-      height: 90%;
-      background: #000;
-      border-radius: 5px;
-      padding: 10px;
-      /* padding: 15px 25px; */
-      font-size: small !important;
-      color: rgb(100, 96, 71) !important;
-      font-family: 'Courier New', Courier, monospace;
-      overflow-y: auto;
-      opacity: 0;
-    }
+        #toggle {
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            align-self: flex-end
+        }
 
-    .chat {
-      width: 48%;
-      height: 100%;
-      display: flex;
-      padding: 15px 25px;
-      flex-direction: column;
-      justify-content: space-between;
-      background: #222;
-      border-radius: 5px;
-      padding: 10px;
-      opacity: 0;
-    }
+        #icon-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center
+        }
 
-    .circle {
-      width: 120px;
-      height: 120px;
-      background: #000;
-      border: 4px solid red;
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: riseUp 2s ease forwards;
-    }
+        #icon-wrap i {
+            color: #aaa;
+            font-size: 0.9rem;
+            padding: .5rem;
+            cursor: pointer
+        }
 
-    .eyeball {
-      width: 20px;
-      height: 20px;
-      background: white;
-      border-radius: 50%;
-      animation: lookAround 3s infinite;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+        #icon-wrap i:hover {
+            color: #fff
+        }
 
-    @keyframes riseUp {
-      0% {
-        top: 50%;
-        opacity: 0;
-      }
+        #nav-links {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem
+        }
 
-      100% {
-        top: 20%;
-        opacity: 1;
-      }
-    }
+        #nav-links a {
+            padding: .5rem 1rem;
+            font-size: .85rem;
+            Printed using ChatGPT to PDF,
+            powered by PDFCrowd HTML to PDF API. 134/150 color: #bbb;
+            text-decoration: none
+        }
 
-    @keyframes lookAround {
+        #nav-links a:hover {
+            background: #191919;
+            color: #fff;
+            border-radius: .5rem
+        }
 
-      0%,
-      100% {
-        transform: translate(-50%, -50%);
-      }
+        #sidebar.closed #nav-links {
+            display: none
+        }
 
-      25% {
-        transform: translate(-45%, -55%);
-      }
+        #main {
+            flex: 1;
+            display: flex;
+            flex-direction: row
+        }
 
-      50% {
-        transform: translate(-55%, -45%);
-      }
+        #chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #131313
+        }
 
-      75% {
-        transform: translate(-45%, -45%);
-      }
-    }
+        #header {
+            padding: 1rem;
+            font-size: .95rem;
+            border-bottom: 1px solid #1a1a1a;
+            background: #161616;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
 
-    #input-box {
-      width: 100%;
-      font-size: small !important;
-      padding: 1px;
-      color: rgb(100, 96, 71) !important;
-      margin-top: 20px;
-    }
+        #header button {
+            background: #1c1c1c;
+            border: 1px solid #333;
+            color: #bbb;
+            padding: .25rem .5rem;
+            border-radius: .25rem;
+            font-size: .75rem;
+            cursor: pointer
+        }
 
-    .options-text {
-      font-size: small !important;
-      position: absolute;
-      top: 1%;
-      padding: 0%;
-      left: 0%;
-      color: #fff !important;
-      transform: translateX(-50%);
-      opacity: 0;
-      text-decoration: none;
-    }
+        #header button:hover {
+            background: #222;
+            color: #fff
+        }
 
-    .cards-container {
-      display: inline;
-      justify-content: space-between;
-      opacity: 0;
-      padding: 12px 25px;
-      /* margin: auto; */
+        #chat {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            font-size: .95rem
+        }
 
-      text-decoration: none;
-      position: absolute;
-      color: rgb(100, 96, 71) !important;
-      top: 0%;
-      width: 100% !important;
-    }
+        .msg {
+            max-width: 80%;
+            padding: .85rem 1rem;
+            border-radius: .5rem;
+            line-height: 1.4
+        }
 
-    .card {
-      background-color: #13141a !important;
-      color: rgb(100, 96, 71) !important;
-      /* padding: 1px  3px;
-margin: 0px; */
-      border-radius: .25em;
-      width: 100px;
-      text-decoration: none;
-      padding: 5x 10px;
-      animation: showCards 2s 4s forwards;
-      text-align: center;
-      box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
-      transition: transform 0.3s;
-      position: relative;
-    }
+        .bot {
+            align-self: flex-start;
+            background: #1a1a1a
+        }
 
-    .card:hover {
-      /* transform: scale(1.05); */
-      opacity: 1;
-      /* margin-bottom: 100px; */
-      overflow-y: scroll;
-      scrollbar-width: medium !important;
-      background-color: #000000 !important;
-      color: rgb(199, 192, 150) !important;
-      text-emphasis: none;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      flex-wrap: wrap;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    }
+        .user {
+            align-self: flex-end;
+            background: #333
+        }
 
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: .5rem Printed using ChatGPT to PDF, powered by PDFCrowd HTML to PDF API. 135/150
+        }
 
-    a,
-    li,
-    ul,
-    ol,
-    strong,
-    p,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    code,
-    pre,
-    span,
-    div,
-    input,
-    button {
-      visibility: visible;
-      text-decoration: none;
-      font-weight: 600;
-      font-variant-caps: petite-caps;
-      color: rgb(100, 96, 71) !important;
-    }
+        .controls i {
+            font-size: .85rem;
+            color: #777;
+            cursor: pointer
+        }
 
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100px;
-      font-variant-caps: petite-caps;
-      left: 0;
-      font-size: small !important;
-      overflow-y: scroll;
-      background-color: #000000;
-      width: 100%;
-      scrollbar-width: thin;
-      scrollbar-color: rgb(199, 192, 150);
-      scrollbar-arrow-color: rgb(199, 192, 150);
-      scrollbar-track-color: rgb(0, 0, 0);
+        .controls i:hover {
+            color: #fff
+        }
 
+        #input-wrap {
+            padding: 1rem;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+            background: #161616
+        }
 
+        #mic-btn {
+            color: #aaa;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer
+        }
 
-      padding: 5px 15px;
-      ;
-      height: 200px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-      border-radius: none;
-      color: rgb(206, 204, 193) !important;
-    }
+        #mic-btn:hover {
+            color: #fff
+        }
 
-    .card:hover .dropdown-menu {
-      display: block;
+        #input {
+            flex: 1;
+            background: #1c1c1c;
+            border: none;
+            padding: .75rem .75rem .75rem 2rem;
+            border-radius: .5rem;
+            color: #fff
+        }
 
-    }
+        #send {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer
+        }
 
-    @keyframes glow {
-      from {
-        opacity: 1;
-      }
+        #send:hover {
+            color: #999
+        }
 
-      to {
-        opacity: 0.6;
-      }
-    }
+        #notes-container {
+            width: 0;
+            transition: width 0.3s ease;
+            overflow: hidden
+        }
 
-    @keyframes lookAround {
+        #notes-container.open {
+            width: 300px
+        }
 
-      0%,
-      100% {
-        transform: translate(0, 0);
-      }
+        #notes {
+            height: 100%;
+            background: #161616;
+            border-left: 1px solid #1a1a1a;
+            display: flex;
+            flex-direction: column
+        }
 
-      25% {
-        transform: translate(-7px, 4px);
-      }
+        #notes-header {
+            padding: 1rem;
+            border-bottom: 1px solid #1a1a1a;
+            font-size: .9rem
+        }
 
-      50% {
-        transform: translate(5px, -5px);
-      }
-
-      75% {
-        transform: translate(-3px, 6px);
-      }
-    }
-
-    @keyframes showCards {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes typewriter {
-      0% {
-        width: 0;
-        opacity: 0;
-      }
-
-      100% {
-        width: auto;
-        opacity: 1;
-      }
-    }
-
-    .decorator-fired {
-      text-decoration: none;
-      font-size: small !important;
-      position: absolute;
-      /* top: 50%; */
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: rgb(177, 174, 153) !important;
-    }
-
-    .card-flex {
-      display: inline-flex;
-      justify-content: space-around;
-      align-items: space-around;
-      flex-wrap: wrap;
-      padding: .5%;
-      width: 100%;
-      color: rgb(100, 96, 71) !important;
-      top: 0;
-
-    }
-
-    .row {
-
-      display: inline-flex;
-      width: 100%;
-      padding: 1%;
-      align-items: space-between;
-
-    }<body class="ipsApp ipsApp_front ipsJS_has ipsClearfix ipsApp_noTouch ipsLayout_sidebarUnused" data-controller="core.front.core.app" data-message="" data-pageapp="forums" data-pagelocation="front" data-pagemodule="forums" data-pagecontroller="index">
-
-<style>
-	
-#ebsGlobalMessage_dismiss a {
-	color: #556b45;
-}
-
-.ebsGlobalMessage_custom {
-	background-color: #dbe2c9;
-	color: #556b45;
-}
-.ebsGlobalMessage_custom p::before {
-	content: '\';
-}
-</style>
-  </style>
+        #notes-content {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            font-size: .85rem;
+                    }
+    </style>
 </head>
 
 <body>
-  <div class="circle">
-    <div class="eyeball"></div>
-  </div>
-  <div class="container">
-
-    <div class="chat animate__animated">
-      <div id="chat-display" class="chat-display"></div>
-      <input type="text" id="input-box" class="form-control chat-input" placeholder="Type your message and press Enter">
+    <div id="app">
+        <div id="sidebar" class="closed">
+            <div>
+                <i class="fas fa-bars" id="toggle"></i>
+                <div id="nav-links">
+                    <a href="#">Inbox</a>
+                    <a href="#">Starred</a>
+                    <a href="#">Drafts</a>
+                    <a href="#">Sent</a>
+                    <a href="#">Archive</a>
+                </div>
+            </div>
+            <div id="icon-wrap">
+                <i class="fas fa-plus"></i>
+                <i class="fas fa-ellipsis-v"></i>
+                <i class="fas fa-microphone"></i>
+                <i class="fas fa-copy"></i>
+                <i class="fas fa-pen"></i>
+                <i class="fas fa-sync"></i>
+            </div>
+        </div>
+        <div id="main">
+            <div id="chat-area">
+                <div id="header">
+                    <span>This is your ZJ. How can I help you today, sir?</span>
+                    <button id="notes-button">Toggle Notes</button>
+                </div>
+                <div id="chat">
+                    <div>
+                        <div class="msg bot">Hello, sir.</div>
+                        <div class="controls">
+                            <i class="fas fa-thumbs-up"></i>
+                            <i class="fas fa-thumbs-down"></i>
+                            <i class="fas fa-sync-alt"></i>
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                    </div>
+                </div>
+                <div id="input-wrap">
+                    <button id="mic-btn"><i class="fas fa-microphone"></i></button>
+                    <input id="input" type="text" placeholder="Type..." />
+                    <button id="send"><i class="fas fa-arrow-up"></i></button>
+                </div>
+            </div>
+            <div id="notes-container">
+                <div id="notes">
+                    <div id="notes-header">Notes</div>
+                    <div id="notes-content">
+                        <p>- Vector Input Stub:</p>
+                        <code>// insert vector input data here</code>
+                        <p>- Vector Output Stub:</p>
+                        <code>// insert vector output result here</code>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="terminal optons-text decorator-fired">
-      <pre><code><p><script> typowriterEffect("You can choose one of three options: Video Games, Dorothy, or Tonalexs.", document.querySelector('options-text')); </script></code></pre> .</p>
-
-    </div>
-
-    <div class="cards-container">
-      <ul class="card decorator-fired ">
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">House</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/house-48/">House</a></li>
-              <li><a href="https://edmc.to/genre/tech-house-46/">Tech House</a></li>
-              <li><a href="https://edmc.to/genre/jackinbassline-house-175/">Bassline House</a></li>
-              <li><a href="https://edmc.to/genre/progressive-house-45/">Progressive House</a></li>
-              <li><a href="https://edmc.to/genre/melodic-progressive-285/">Melodic Progressive</a></li>
-              <li><a href="https://edmc.to/genre/future-house-229/">Future House</a></li>
-              <li><a href="https://edmc.to/genre/deep-house-132/">Deep House</a></li>
-              <li><a href="https://edmc.to/genre/g-house-273/">G-House</a></li>
-              <li><a href="https://edmc.to/genre/funk-soul-disco-49/">Funk / Disco / Jackin</a></li>
-              <li><a href="https://edmc.to/genre/synthwaveretrowave-278/">Synthwave/Retrowave</a></li>
-              <li><a href="https://edmc.to/genre/nu-discoindie-dance-201/">Nu Disco/Indie Dance</a></li>
-              <li><a href="https://edmc.to/genre/danceclub-25/">Dance/Club</a></li>
-              <li><a href="https://edmc.to/genre/electro-swing-134/">Electro Swing</a></li>
-              <li><a href="https://edmc.to/genre/tropical-house-256/">Tropical House</a></li>
-              <li><a href="https://edmc.to/genre/afro-house-327/">Afro House</a></li>
-              <li><a href="https://edmc.to/genre/house-mixeslivesets-85/">Mixes/Livesets</a></li>
-              <li><a href="https://edmc.to/genre/house-albums-76/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-singles-287/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-288/">Lossless Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Drum &amp; Bass</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/drum-bass-37/">Drum &amp; Bass</a></li>
-              <li><a href="https://edmc.to/genre/deeptechstep-176/">Deep/Techstep</a></li>
-              <li><a href="https://edmc.to/genre/crossbreedtearout-163/">Crossbreed/Tearout</a></li>
-              <li><a href="https://edmc.to/genre/halfstephalftime-137/">Halfstep/Halftime</a></li>
-              <li><a href="https://edmc.to/genre/neurofunkdark-164/">Neurofunk/Dark</a></li>
-              <li><a href="https://edmc.to/genre/liquid-drum-bass-121/">Liquid Drum &amp; Bass</a></li>
-              <li><a href="https://edmc.to/genre/jukefootwork-178/">Juke/Footwork</a></li>
-              <li><a href="https://edmc.to/genre/jump-up-145/">Jump-Up</a></li>
-              <li><a href="https://edmc.to/genre/jungleragga-122/">Jungle/Ragga</a></li>
-              <li><a href="https://edmc.to/genre/autonomic-215/">Autonomic</a></li>
-              <li><a href="https://edmc.to/genre/dnb-mixeslivesets-141/">Mixes/Livesets</a></li>
-              <li><a href="https://edmc.to/genre/dnb-albums-144/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-drum-bass-289/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-290/">Lossless Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Dubstep</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/dubstep-31/">Dubstep</a></li>
-              <li><a href="https://edmc.to/genre/riddim-177/">Riddim</a></li>
-              <li><a href="https://edmc.to/genre/drumstep-102/">Drumstep</a></li>
-              <li><a href="https://edmc.to/genre/deep-dubstep-103/">Deep Dubstep</a></li>
-              <li><a href="https://edmc.to/genre/purple-music-186/">Purple Music</a></li>
-              <li><a href="https://edmc.to/genre/midtempo-dubstep-130/">Midtempo Dubstep</a></li>
-              <li><a href="https://edmc.to/genre/liquid-dubstep-185/">Liquid Dubstep</a></li>
-              <li><a href="https://edmc.to/genre/carnival-168/">Carnival</a></li>
-              <li><a href="https://edmc.to/genre/dubstep-mixeslivesets-123/">Mixes/Livesets</a></li>
-              <li><a href="https://edmc.to/genre/dubstep-albums-124/">Albums</a></li>
-              <li ><a href="https://edmc.to/genre/lossless-dubstep-291/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-292/">Lossless Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Trap</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/trap-170/">Trap</a></li>
-              <li><a href="https://edmc.to/genre/club-212/">Club</a></li>
-              <li><a href="https://edmc.to/genre/festival-trap-222/">Festival Trap</a></li>
-              <li><a href="https://edmc.to/genre/chillfuture-trap-199/">Chill/Future Trap</a></li>
-              <li><a href="https://edmc.to/genre/twerk-221/">Twerk</a></li>
-              <li><a href="https://edmc.to/genre/dirty-southtrill-200/">Dirty South/Trill</a></li>
-              <li><a href="https://edmc.to/genre/hybrid-trap-259/">Hybrid Trap</a></li>
-              <li><a href="https://edmc.to/genre/wave-322/">Wave</a></li>
-              <li><a href="https://edmc.to/genre/trap-mixeslivesets-198/">Mixes/Livesets</a></li>
-              <li><a href="https://edmc.to/genre/trap-albums-197/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-trap-302/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-293/">Lossless Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Electro</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/electro-331/">Electro</a></li>
-              <li><a href="https://edmc.to/genre/ghetto-tech-332/">Ghetto Tech</a></li>
-              <li><a href="https://edmc.to/genre/electro-house-44/">Electro House</a></li>
-              <li><a href="https://edmc.to/genre/moombahton-131/">Moombahton</a></li>
-              <li><a href="https://edmc.to/genre/big-room-house-216/">Big Room House</a></li>
-              <li><a href="https://edmc.to/genre/dutch-house-47/">Dutch House</a></li>
-              <li><a href="https://edmc.to/genre/melbourne-house-217/">Melbourne House</a></li>
-              <li><a href="https://edmc.to/genre/acid-house-156/">Acid House</a></li>
-              <li><a href="https://edmc.to/genre/hard-electro-43/">Hard Electro</a></li>
-              <li><a href="https://edmc.to/genre/fidget-22/">Fidget</a></li>
-              <li><a href="https://edmc.to/genre/dirty-house-albums-68/">Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Midtempo</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/glitch-hop-224/">Glitch Hop</a></li>
-              <li><a href="https://edmc.to/genre/electro-soulfuture-funk-226/">Electro/Future Funk</a></li>
-              <li><a href="https://edmc.to/genre/idmorganic-225/">IDM/Organic</a></li>
-              <li><a href="https://edmc.to/genre/ghetto-funk-187/">Ghetto Funk</a></li>
-              <li><a href="https://edmc.to/genre/midtempo-albums-227/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-singles-303/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-295/">Lossless Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Garage</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/uk-garage-150/">UK Garage</a></li>
-              <li><a href="https://edmc.to/genre/grime-152/">Grime</a></li>
-              <li><a href="https://edmc.to/genre/uk-funky-151/">UK Funky</a></li>
-              <li><a href="https://edmc.to/genre/uk-bass-218/">UK Bass</a></li>
-              <li><a href="https://edmc.to/genre/future-garage-161/">Future Garage</a></li>
-              <li><a href="https://edmc.to/genre/4x4-154/">4x4</a></li>
-              <li><a href="https://edmc.to/genre/garage-mixeslivesets-184/">Mixes/Livesets</a></li>
-              <li><a href="https://edmc.to/genre/garagebass-albums-155/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-singles-305/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-296/">Lossless Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Bass</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/future-beatsbass-204/">Future Beats/Bass</a></li>
-              <li><a href="https://edmc.to/genre/chiptune-147/">Chiptune</a></li>
-              <li><a href="https://edmc.to/genre/glitch-157/">Glitch</a></li>
-              <li><a href="https://edmc.to/genre/ambient-260/">Ambient</a></li>
-              <li><a href="https://edmc.to/genre/chillhopdowntempolo-fi-109/">Chillhop/Downtempo/Lo-Fi</a></li>
-              <li><a href="https://edmc.to/genre/experimental-267/">Experimental</a></li>
-              <li><a href="https://edmc.to/genre/future-bb-mixeslivesets-39/">Mixes/Livesets</a></li>
-              <li><a href="https://edmc.to/genre/future-beatsbass-albums-203/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-singles-306/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-297/">Lossless Albums</a></li>
-
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Breaks</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/breaks-breakbeat-89/">Breaks / Breakbeat</a></li>
-              <li><a href="https://edmc.to/genre/electro-breaks-335/">Electro Breaks</a></li>
-              <li><a href="https://edmc.to/genre/progressive-liquid-breaks-336/">Progressive / Liquid Breaks</a></li>
-              <li><a href="https://edmc.to/genre/neurobreaks-337/">Neurobreaks</a></li>
-              <li><a href="https://edmc.to/genre/acid-psy-breaks-338/">Acid / Psy Breaks</a></li>
-              <li><a href="https://edmc.to/genre/jungle-breaks-343/">Jungle Breaks</a></li>
-              <li><a href="https://edmc.to/genre/albums-344/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/mixes-livesets-339/">Mixes / Livesets</a></li>
-              <li><a href="https://edmc.to/genre/lossless-singles-340/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-342/">Lossless Albums</a></li>
-
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Trance</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/trance-50/">Trance</a></li>
-              <li><a href="https://edmc.to/genre/psy-trance-270/">Psy Trance</a></li>
-              <li><a href="https://edmc.to/genre/uplifting-trance-52/">Uplifting Trance</a></li>
-              <li><a href="https://edmc.to/genre/psy-progressive-129/">Psy Progressive</a></li>
-              <li><a href="https://edmc.to/genre/progressive-trance-51/">Progressive Trance</a></li>
-              <li><a href="https://edmc.to/genre/trance-mixesradio-214/">Mixes/Radio</a></li>
-              <li><a href="https://edmc.to/genre/trance-albums-77/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-singles-309/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-300/">Lossless Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Techno</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/techno-311/">Techno</a></li>
-              <li><a href="https://edmc.to/genre/acid-hard-techno-55/">Acid / Hard Techno</a></li>
-              <li><a href="https://edmc.to/genre/minimal-deep-tech-56/">Minimal / Deep Tech</a></li>
-              <li><a href="https://edmc.to/genre/melodic-techno-330/">Melodic Techno</a></li>
-              <li><a href="https://edmc.to/genre/techno-mixeslivesets-143/">Mixes/Livesets</a></li>
-              <li><a href="https://edmc.to/genre/techno-albums-78/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-singles-307/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-299/">Lossless Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Hardcore</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/hardcore-88/">Hardcore</a></li>
-              <li><a href="https://edmc.to/genre/gabber-117/">Gabber</a></li>
-              <li><a href="https://edmc.to/genre/uk-hardcore-116/">UK Hardcore</a></li>
-              <li><a href="https://edmc.to/genre/speedcore-173/">Speedcore</a></li>
-              <li><a href="https://edmc.to/genre/frenchcore-119/">Frenchcore</a></li>
-              <li><a href="https://edmc.to/genre/mixeslivesets-126/">Mixes/Livesets</a></li>
-              <li><a href="https://edmc.to/genre/hardcore-albums-255/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-singles-310/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-301/">Lossless Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">HardDance</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/hardstyle-36/">Hardstyle</a></li>
-              <li><a href="https://edmc.to/genre/dubstyle-139/">Dubstyle</a></li>
-              <li><a href="https://edmc.to/genre/jumpstyle-167/">Jumpstyle</a></li>
-              <li><a href="https://edmc.to/genre/hands-up-38/">Hands Up</a></li>
-              <li><a href="https://edmc.to/genre/hard-trance-166/">Hard Trance</a></li>
-              <li><a href="https://edmc.to/genre/hard-dance-mixeslivesets-126/">Mixes/Livesets</a></li>
-              <li><a href="https://edmc.to/genre/hard-dance-albums-255/">Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-singles-310/">Lossless Singles</a></li>
-              <li><a href="https://edmc.to/genre/lossless-albums-301/">Lossless Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Lossless</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/lossless-houseelectro-287/">House/Electro</a></li>
-              <li><a href="https://edmc.to/genre/lossless-trap-302/">Trap</a></li>
-              <li><a href="https://edmc.to/genre/lossless-future-bb-306/">Future B/B</a></li>
-              <li><a href="https://edmc.to/genre/lossless-trance-309/">Trance</a></li>
-              <li><a href="https://edmc.to/genre/lossless-drum-bass-289/">Drum &amp; Bass</a></li>
-              <li><a href="https://edmc.to/genre/lossless-midtempo-303/">Midtempo</a></li>
-              <li><a href="https://edmc.to/genre/lossless-hard-dance-310/">Hard Dance</a></li>
-              <li><a href="https://edmc.to/genre/lossless-dubstep-291/">Dubstep</a></li>
-              <li><a href="https://edmc.to/genre/lossless-garage-305/">Garage</a></li>
-              <li><a href="https://edmc.to/genre/lossless-techno-307/">Techno</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-
-        <!-- about -->
-        <li aria-haspopup="true">
-          <a href="#">Lossless Albums</a>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="https://edmc.to/genre/lossless-houseelectro-albums-288/">House/Electro Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-trap-albums-293/">Trap Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-future-bb-albums-297/">Future B/B Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-trance-albums-300/">Trance Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-drum-bass-albums-290/">Drum &amp; Bass Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-midtempo-albums-295/">Midtempo Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-hard-dance-albums-301/">Hard Dance Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-dubstep-albums-292/">Dubstep Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-garage-albums-296/">Garage Albums</a></li>
-              <li><a href="https://edmc.to/genre/lossless-techno-albums-299/">Techno Albums</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--/ about -->
-      </ul>
-
-    </div>
-    <script>
-      addEventListener('load', () => {
-        const chatPanel = document.querySelector('.chat');
-        const terminalPanel = document.querySelector('.terminal');
-        const container = document.querySelector('.container');
-        const eyeball = document.querySelector('.circle');
-        const optionsText = document.querySelector('.options-text');
-        const cardsContainer = document.querySelector('.cards-container');
-
-        // After eyeball rises, wait 1 second, then display the typewriter text
-        setTimeout(() => {
-          optionsText.style.opacity = 1;
-          optionsText.classList.add('animate__typewriter');
-        }, 3500); // Wait 3.5 seconds for the eyeball to rise
-
-        // Slide in panels
-        setTimeout(() => {
-          container.style.opacity = 1;
-          chatPanel.classList.add('animate__slideInLeft');
-          terminalPanel.classList.add('animate__slideInRight');
-        }, 2500);
-
-        // Show cards after the text animation
-        setTimeout(() => {
-          cardsContainer.style.opacity = 1;
-        }, 4500); // Show the cards 1 second after the text appears
-      });
-
-
-      const chatDisplay = document.querySelector('#chat-display');
-      const inputBox = document.querySelector('#input-box');
-      const terminal = document.querySelector('.terminal');
-      const videoGamesLink = document.querySelector('#video-games-link');
-      const dorothyLink = document.querySelector('#dorothy-link');
-      const tonalexsLink = document.querySelector('#tonalexs-link');
-
-      inputBox.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          const message = inputBox.value;
-          chatDisplay.innerHTML += `<p>You: ${message}</p>`;
-          inputBox.value = '';
-          terminal.innerHTML += `<p>${message}</p>`;
-          terminal.scrollTop = terminal.scrollHeight;
+  <script>
+   const chat = document.getElementById('chat'), input = document.getElementById('input'), send = document.getElementById('send')
+        const fixedStopwords = ["the", "and", "of", "to", "in", "a", "is", "it", "that", "for", "on", "was", "with", "as", "by", "at", "from", "an", "be", "this", "which", "or", "but", "are", "not",
+            "have", "has", "had", "they", "you", "we", "he", "she", "them", "his", "her", "their", "its", "i", "me", "my", "mine", "our", "us", "your", "yours"]
+        const sidebar = document.getElementById('sidebar'), toggle = document.getElementById('toggle')
+        const notesContainer = document.getElementById('notes-container'), notesButton = document.getElementById('notes-button')
+        const micBtn = document.getElementById('mic-btn')
+        let recognition
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition()
+            recognition.continuous = false
+            recognition.interimResults = false
+            recognition.lang = 'en-US'
+            micBtn.onclick = () => recognition.start()
+            recognition.onresult = e => input.value = e.results[0][0].transcript
         }
-      });
+        const state = { stopWords: new Set(fixedStopwords), freqMap: {}, memory: [], history: [] }
+        function sanitizeInput(text) { return text.replace(/<[^>]*>/g, '').replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim() }
+        function isCodeLike(text) { return /({|}|<|>|\(|\)|=>|;|var|let|const|function|\$|#|\/\*|\*\/|\/\/|if\s*\(|else|return)/i.test(text) }
+        function cleanText(text) { if (isCodeLike(text)) return ''; return sanitizeInput(text) }
+        function tokenize(text) { const cleaned = cleanText(text); return cleaned.toLowerCase().split(/\s+/).filter(Boolean) }
+        function buildFrequency(tokens) { tokens.forEach(t => state.freqMap[t] = (state.freqMap[t] || 0) + 1); updateLCSW() }
+        function updateLCSW() {
+            const sorted = Object.entries(state.freqMap).sort((a, b) => b[1] - a[1]); const threshold = Math.ceil(sorted.length * 0.25); const lcsw =
+                sorted.slice(0, threshold).map(([w]) => w); state.stopWords = new Set([...fixedStopwords, ...lcsw]);
+        }
+        function extractSOP(text) {
+            const sents = text.match(/[^.!?]+[.!?]+/g) || [text]; return sents.map(s => {
+                const words = s.trim().split(/\s+/).filter(w => {
+                    const clean =
+                        w.toLowerCase().replace(/[^a-z0-9]/g, ''); return clean && !state.stopWords.has(clean)
+                }); return {
+                    subject: words[0] || "", predicate: words[Math.floor(words.length / 2)] || "",
+                    object: words.at(-1) || ""
+                }
+            }).filter(s => s.subject && s.predicate && s.object)
+        }
+        function inferIntent(sops) {
+            const s = sops.map(x => x.subject), p = sops.map(x => x.predicate), o = sops.map(x => x.object); return {
+                subject: mostCommon(s), predicate:
+                    mostCommon(p), object: mostCommon(o)
+            }
+        }
+        function mostCommon(arr) { const count = {}; arr.forEach(w => count[w] = (count[w] || 0) + 1); return Object.entries(count).sort((a, b) => b[1] - a[1])[0]?.[0] || '' }
+        function store(input, intent, tokens) { state.memory.push({ input, intent, tokens }) }
+        function rotateResponse(intent) {
 
-      videoGamesLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        chatDisplay.innerHTML += `<p>Bot: You chose Video Games. Here are some options:</p>`;
-      });
-
-      dorothyLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        chatDisplay.innerHTML += `<p>Bot: You chose Dorothy. Here are some options:</p>`;
-      });
-
-      tonalexsLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        chatDisplay.innerHTML += `<p>Bot: You chose Tonalexs. Here are some options:</p>`;
-      });
-
-      window.addEventListener('load', () => {
-        const chatPanel = document.querySelector('.chat');
-        const terminalPanel = document.querySelector('.terminal');
-        const container = document.querySelector('.container');
-        const eyeball = document.querySelector('.circle');
-        const optionsText = document.querySelector('.options-text');
-        const cardsContainer = document.querySelector('.cards-container');
-
-        // After eyeball rises, wait 1 second, then display the typewriter text
-        setTimeout(() => {
-          optionsText.style.opacity = 1;
-          optionsText.classList.add('animate__typewriter');
-        }, 3500); // Wait 3.5 seconds for the eyeball to rise
-
-        // Slide in panels
-        setTimeout(() => {
-          container.style.opacity = 1;
-          chatPanel.classList.add('animate__slideInLeft');
-          terminalPanel.classList.add('animate__slideInRight');
-        }, 2500);
-
-        // Show cards after the text animation
-        setTimeout(() => {
-          cardsContainer.style.opacity = 1;
-        }, 4500); // Show the cards 1 second after the text appears
-      });
-
-      function typowriterEffect(text, element) {
-        let index = 0;
-        let interval = setInterval(() => {
-          element.textContent += text[index];
-          index++;
-          if (index === text.length) {
-            clearInterval(interval);
-          }
-        }, 100);
-      }
-    </script>
-  </div>
-
+            const openers = ["Are you asking about", "Do you want to discuss", "Would you like to explore", "Is this centered on", "Are we talking about", "Could you be referring to", "Is your interest in", "Do you mean", "Are you looking into", "Shall we dive into", "Is this about", "Are you pointing to", "Might this concern", "Is this possibly related to", "Would it make sense to examine", "Are you aiming at", "Are we focusing on", "Do you mean to bring up", "Shall we unpack", "Would now be a good time to consider", "Do you think this involves", "Are we investigating", "Could this be interpreted as", "Are we analyzing", "Is this touching on", "Would you agree this relates to", "Are you honing in on", "Could this be about", "Do you see this as", "Are we digging into", "Would it help to understand", "Is this stemming from", "Could the root be", "Do you intend to frame", "Would you like to frame", "Is it fair to say", "Are we circling", "Is the focus on", "Are we zeroing in on", "Does this relate to", "Might this highlight", "Does this illuminate", "Is your thinking orbiting", "Is this forming around", "Shall we rotate around", "Is this arising from", "Do you want tohighlight", "Could we shine light on", "Is this encapsulated by"]
+            const middles = ["doing", "attempting", "engaged in", "processing", "handling", "working on", "navigating", "exploring", "thinking through", "circling", "revisiting", "manifesting", "focusing on", "communicating", "expressing", "delivering", "constructing", "shaping", "approaching", "clarifying", "examining", "mapping", "contextualizing", "relating to", "expanding into", "reducing to", "operating through", "executing", "engaging with", "reacting to", "pursuing", "targeting", "unfolding as", "mirroring", "grounding", "responding to", "shifting into", "projecting", "filtering through", "experiencing", "wrestling with", "resolving", "confronting", "anchoring", "looping on", "pivoting into", "tying together", "referencing", "holding space for", "widening around"]
+            const endings = ["in relationto", "toward", "with respect to", "as it connects to", "in terms of", "as it involves", "in reference to", "as it intersects", "in alignment with", "as framed by", "in proximity to", "as echoed by", "as symbolized in", "in the context of", "in parallel with", "in connection with", "on behalf of", "under the scope of", "under the lens of", "in contrast to", "as juxtaposed against", "against the backdrop of", "within reach of", "in pursuit of", "within the logic of", "surrounding", "by way of", "as colored by", "while addressing", "in the shadow of", "in the language of", "under pressure from", "as reflected through", "as defined by", "in tension with", "inside the frame of", "within the dynamics of", "at odds with", "among themes of", "along the arc of", "beneath the structure of", "woven into", "as embedded in", "inside the discourse of", "nested beside", "reflecting", "in resonance with"]
+            const o = openers[Math.floor(Math.random() * openers.length)]
+            const m = middles[Math.floor(Math.random() * middles.length)]
+            const e = endings[Math.floor(Math.random() * endings.length)]
+            const sentence = `${o} ${intent.subject} ${m} ${intent.predicate} ${e} ${intent.object}?`;
+            
+            return `${sentence}`;
+        }
+        function post(txt, type) {
+            const wrap = document.createElement('div'), msg = document.createElement('div'), controls = document.createElement('div');
+            wrap.style.display = 'flex'; wrap.style.flexDirection = 'column'; wrap.style.alignItems = type === 'user' ? 'flex-end' : 'flex-start'; msg.className = `msg ${type}`;
+            msg.textContent = txt; controls.className = 'controls'; controls.innerHTML = `<i class="fas fa-thumbs-up"></i><i class="fas fa-thumbs-down"></i><i class="fas fa-sync-alt"></i><i class="fas fa-ellipsis-h"></i>`; wrap.appendChild(msg); wrap.appendChild(controls); chat.appendChild(wrap); chat.scrollTop = chat.scrollHeight
+        }
+        send.onclick = () => {
+            let t = input.value.trim(); if (!t) return; post(t, 'user'); const tokens = tokenize(t); buildFrequency(tokens); const sop = extractSOP(t); const intent =
+                inferIntent(sop); store(t, intent, tokens); input.value = ''; setTimeout(() => post(rotateResponse(intent), 'bot'), 1600)
+        }
+        input.addEventListener('keypress', e => { if (e.key === 'Enter') send.click() })
+        toggle.onclick = () => { sidebar.classList.toggle('closed') }
+        notesButton.onclick = () => { notesContainer.classList.toggle('open') }
+  </script>
 </body>
 
 </html>
-
-
-
-
-
-<!-- 
-<div class="cards-container card-flex">
-<div class="card" id="video-games-card"     >
-<a href="#" id="video-games-link">Video Games</a>
-<div class="dropdown-menu">
-<strong>PlayStation Consoles</strong>
-<a href="https://kohlyde.github.io/emulator-js-setup/">PlayStation 2</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">PlayStation</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">PlayStation Portable (PSP)</a>
-
-<strong>Xbox Consoles</strong>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Xbox</a>
-
-<strong>Nintendo Consoles</strong>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Nintendo 64</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Super Nintendo Entertainment System (SNES)</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Game Boy Advance</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Game Boy Color</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Game Boy</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Nintendo DS</a>
-
-<strong>Sega Consoles</strong>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Dreamcast</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Sega Genesis</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Sega Master System</a>
-
-<strong>Neo Geo Consoles</strong>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Neo Geo</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Neo Geo Pocket</a>
-
-<strong>Arcade Systems</strong>
-<a href="https://kohlyde.github.io/emulator-js-setup/">MAME (Multiple Arcade Machine Emulator)</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Capcom CPS1</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Capcom CPS2</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Tecmo</a>
-
-<strong>Other Classics</strong>
-<a href="https://kohlyde.github.io/emulator-js-setup/">TurboGrafx-16</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">3DO</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Jaguar</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Vectrex</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Commodore 64</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Amiga</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">ZX Spectrum</a>
-
-<strong>Handheld Consoles</strong>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Game Boy</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Nintendo DS</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">PlayStation Portable (PSP)</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Neo Geo Pocket</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">WonderSwan</a>
-
-<strong>Classic Consoles</strong>
-<a href="https://kohlyde.github.io/emulator-js-setup/">NES (Nintendo Entertainment System)</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Atari 2600</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Atari 7800</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">ColecoVision</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Intellivision</a>
-<a href="https://kohlyde.github.io/emulator-js-setup/">Magnavox Odyssey</a>
-</div>
-</div> -->
-<!-- <div class="card" id="dorothy-card3 card-flex">
-<a href="index-1.html" id="dorothy-link3">Dorthi</a>
-<div class="dropdown-menu">
-<strong>Eye-Related AIs</strong>
-<a href="index-1.html">OptiCore</a>
-<a href="index-2.html">IrisVision</a>
-<a href="index-3.html">VeraSight</a>
-<a href="index-4.html">GazeNet</a>
-<a href="index-5.html">FocusAI</a>
-
-<strong>Vision Systems</strong>
-<a href="index-6.html">OmniEye</a>
-<a href="index-7.html">EyeSight 360</a>
-<a href="index-8.html">ClarityBot</a>
-<a href="index-9.html">PanoramaAI</a>
-<a href="index-10.html">VisionX</a>
-
-<strong>Perception AIs</strong>
-<a href="index-11.html">CerebraEye</a>
-<a href="index-12.html">Percepta</a>
-<a href="index-13.html">InsightX</a>
-<a href="index-14.html">SentientGaze</a>
-<a href="index-15.html">LumenVision</a>
-
-<strong>Surveillance &amp; Watcher AIs</strong>
-<a href="index-16.html">WatchTower</a>
-<a href="index-17.html">EyeSpy</a>
-<a href="index-18.html">SentinelEye</a>
-<a href="index-19.html">SkyEye</a>
-<a href="index-20.html">ApexVision</a>
-
-<strong>Eye-Centric Projects</strong>
-<a href="index-21.html">Project Iris</a>
-<a href="index-22.html">Operation Sight</a>
-<a href="index-23.html">The Eye of Horus</a>
-<a href="index-24.html">Visionary Protocol</a>
-<a href="index-25.html">Project Optica</a>
-
-<strong>Futuristic Eyes</strong>
-<a href="index-26.html">XenoEye</a>
-<a href="index-27.html">CerebralSight</a>
-<a href="index-28.html">NeuroGaze</a>
-<a href="index-29.html">OpticX</a>
-<a href="index-30.html">HyperView</a>
-</div>
-</div>
-<div class="card" id="tonalexs-card2 card-flex" >
-<a href="https://kohlyde.github.io/tonalexs/" id="tonalexs-link">Tonalexs</a>
-<div class="dropdown-menu">
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs</a>
-<a href="https://kohlyde.github.io/tonalexs/">Music Theory</a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs</a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs</a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs </a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs </a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs </a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs </a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs </a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs </a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs </a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs </a>
-<a href="https://kohlyde.github.io/tonalexs/">Tonalexs</a>
-</div>
-</div></div> -->
