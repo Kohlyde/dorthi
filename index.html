@@ -256,12 +256,11 @@
   background: #000;
   border: 3px solid red;
   border-radius: 50%;
-  position: fixed;
-  top: 40%;
-  right: 140px; /* adjust as needed */
-  transform: translateY(-20%);
-  z-index: 1; /* lower z-index so notes (if given z-index > 1) appear on top */
-  animation: 2s riseUp 3s ease forwards;
+  position: fixed;opacity: 0;
+  right: 180px; /* adjust as needed */
+  top: 70%; /* start from a lower position */
+  z-index: 1; /* ensure it's behind your notes if they have a higher z-index */
+  animation: 3s riseUp 2s ease forwards;
 }
 
 .eyeball {
@@ -310,7 +309,7 @@
 .slide-delay-1 { animation-delay: 0.1s; }
 .slide-delay-2 { animation-delay: 0.2s; }
 .slide-delay-3 { animation-delay: 0.3s; }
-@keyframes riseUp{ 0%{ top: 50%; opacity: 0;} 100%{ top: 10%; opacity: 1;}} 
+@keyframes riseUp{ 0%{ border: 3px solid rgb(116, 116, 116);top: 50%; opacity: 0.1;} 40%{ border: 3px solid rgb(255, 230, 0);top: 52%; opacity: .7;} 60%{border: 3px solid red; top: 30%; opacity: 1;}70%{border: 3px solid rgb(57, 98, 233); top: 20%; opacity: 1;} 100%{border: 3px solid red; top: 30%; opacity: 1;} }
 @keyframes lookAround{ 0%, 100%{ transform: translate(-50%, -50%);} 25%{ transform: translate(-45%, -55%);} 50%{ transform: translate(-55%, -45%);} 75%{ transform: translate(-45%, -45%);}} 
 
 /* Add further delays as needed */
