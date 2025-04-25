@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dorothy Alpha | 👁 </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
         * {
             box-sizing: border-box;
@@ -248,6 +249,17 @@
             overflow-y: auto;
             font-size: .85rem;
                     }
+        /* Custom sequential slide in from right */
+.slide-in {
+  animation-name: slideInRight;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.slide-delay-1 { animation-delay: 0.1s; }
+.slide-delay-2 { animation-delay: 0.2s; }
+.slide-delay-3 { animation-delay: 0.3s; }
+/* Add further delays as needed */
     </style>
 </head>
 
@@ -276,7 +288,7 @@
         <div id="main">
             <div id="chat-area">
                 <div id="header">
-                    <span>DORTHI | 👁</span>
+                   <span class="animate__animated slide-in slide-delay-1">DORTHI | 👁</span>
                     <button id="notes-button">Toggle Notes</button>
                 </div>
                 <div id="chat">
