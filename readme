@@ -1,0 +1,42 @@
+# Dorothy Prime Final
+
+A **dark-themed**, **async-controlled** sidebar interface built with pure JavaScript and Bootstrap-like styling. This project demonstrates dynamic UI interactions managed through Promises and a master async initializer, preserving a large set of modular processing functions for text analysis and user interaction.
+
+## 🔗 Live Demo
+[View Dorothy Prime Final ↗](https://kohlyde.github.io/dorthi/#)
+
+## Features
+- **Dark Theme Layout**: Full-screen, flex-based layout with a collapsible sidebar.
+- **FontAwesome Icons**: Toggle sidebar control and visual icons integrated.
+- **Async Control**: All UI events (sidebar toggle, nav links, chat box clicks, input processing, eye animation) wrapped in Promises and chained in `initializeApp()`.
+- **Modular Functions**: 50+ text-processing functions (e.g., Soundex, Gaussian filter, term grouping) untouched and ready for data analysis.
+- **Single-Line, Flat Formatting**: JavaScript functions and CSS rules flattened for readability and maintainability.
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/kohlyde/dorthi.git
+   ```
+2. Open `index.html` in your browser.
+
+## Usage
+- Click the **☰** icon to toggle the sidebar.
+- Navigate through **Inbox**, **Starred**, **Sent**, **Drafts**, **Trash** links (events handled asynchronously).
+- Click the chat area or press **Enter** in the input field to trigger text processing functions.
+- Observe the animated eye element reacting to events.
+
+## Code Structure
+- **`index.html`**: Contains layout markup, styles, and script.
+- **Styles**: Defined inline in a `<style>` tag; dark theme with CSS reset.
+- **Script**: 
+  - Element references at top.
+  - Original text-processing functions.
+  - Promisified setup functions (`setupSidebarToggle()`, `setupNavLinks()`, etc.).
+  - `initializeApp()` chains all event setups.
+  - `DOMContentLoaded` triggers `initializeApp()`.
+
+## Contributing
+Contributions welcome! Please fork the repo, create a branch, and submit a pull request.
+
+## License
+MIT © Kohlyde
