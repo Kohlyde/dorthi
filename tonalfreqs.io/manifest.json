@@ -1,0 +1,301 @@
+{
+  "version": "1.0.0",
+  "name": "tonalfreqs.io Document Repository",
+  "description": "Centralized document hub for music theory, tonal analysis, and audio frequency resources",
+  "lastUpdated": "2025-11-09",
+  "documents": [
+    {
+      "id": "dorthi-ai-companion",
+      "title": "Dorthi AI Companion",
+      "category": "ai",
+      "subcategory": "documentation",
+      "filename": "Dorthi AI Companion.pdf",
+      "path": "../docs/Dorthi AI Companion.pdf",
+      "description": "Comprehensive documentation for the Dorthi AI Companion system",
+      "fileSize": "81074 bytes",
+      "tags": ["ai", "companion", "documentation", "specifications"],
+      "version": "1.0"
+    },
+    {
+      "id": "origins-house-music-main",
+      "title": "Origins of House Music",
+      "category": "music-theory",
+      "subcategory": "history",
+      "filename": "Origins of House Music.pdf",
+      "path": "../docs/Origins of House Music.pdf",
+      "description": "Main document covering the origins and history of House music",
+      "fileSize": "83820 bytes",
+      "tags": ["house", "music-history", "electronic-music", "origins"],
+      "version": "1.0"
+    },
+    {
+      "id": "origins-house-music-1",
+      "title": "Origins of House Music - Part 1",
+      "category": "music-theory",
+      "subcategory": "history",
+      "filename": "Origins of House Music-1.pdf",
+      "path": "../docs/Origins of House Music-1.pdf",
+      "description": "First part of the comprehensive Origins of House Music series",
+      "fileSize": "113556 bytes",
+      "tags": ["house", "music-history", "electronic-music", "series"],
+      "version": "1.0",
+      "series": {
+        "name": "Origins of House Music",
+        "part": 1,
+        "totalParts": 8
+      }
+    },
+    {
+      "id": "origins-house-music-2",
+      "title": "Origins of House Music - Part 2",
+      "category": "music-theory",
+      "subcategory": "history",
+      "filename": "Origins of House Music-2.pdf",
+      "path": "../docs/Origins of House Music-2.pdf",
+      "description": "Second part of the comprehensive Origins of House Music series",
+      "fileSize": "141536 bytes",
+      "tags": ["house", "music-history", "electronic-music", "series"],
+      "version": "1.0",
+      "series": {
+        "name": "Origins of House Music",
+        "part": 2,
+        "totalParts": 8
+      }
+    },
+    {
+      "id": "origins-house-music-3",
+      "title": "Origins of House Music - Part 3",
+      "category": "music-theory",
+      "subcategory": "history",
+      "filename": "Origins of House Music-3.pdf",
+      "path": "../docs/Origins of House Music-3.pdf",
+      "description": "Third part of the comprehensive Origins of House Music series",
+      "fileSize": "175108 bytes",
+      "tags": ["house", "music-history", "electronic-music", "series"],
+      "version": "1.0",
+      "series": {
+        "name": "Origins of House Music",
+        "part": 3,
+        "totalParts": 8
+      }
+    },
+    {
+      "id": "origins-house-music-4",
+      "title": "Origins of House Music - Part 4",
+      "category": "music-theory",
+      "subcategory": "history",
+      "filename": "Origins of House Music-4.pdf",
+      "path": "../docs/Origins of House Music-4.pdf",
+      "description": "Fourth part of the comprehensive Origins of House Music series",
+      "fileSize": "204496 bytes",
+      "tags": ["house", "music-history", "electronic-music", "series"],
+      "version": "1.0",
+      "series": {
+        "name": "Origins of House Music",
+        "part": 4,
+        "totalParts": 8
+      }
+    },
+    {
+      "id": "origins-house-music-5",
+      "title": "Origins of House Music - Part 5",
+      "category": "music-theory",
+      "subcategory": "history",
+      "filename": "Origins of House Music-5.pdf",
+      "path": "../docs/Origins of House Music-5.pdf",
+      "description": "Fifth part of the comprehensive Origins of House Music series",
+      "fileSize": "232348 bytes",
+      "tags": ["house", "music-history", "electronic-music", "series"],
+      "version": "1.0",
+      "series": {
+        "name": "Origins of House Music",
+        "part": 5,
+        "totalParts": 8
+      }
+    },
+    {
+      "id": "origins-house-music-6",
+      "title": "Origins of House Music - Part 6",
+      "category": "music-theory",
+      "subcategory": "history",
+      "filename": "Origins of House Music-6.pdf",
+      "path": "../docs/Origins of House Music-6.pdf",
+      "description": "Sixth part of the comprehensive Origins of House Music series",
+      "fileSize": "264202 bytes",
+      "tags": ["house", "music-history", "electronic-music", "series"],
+      "version": "1.0",
+      "series": {
+        "name": "Origins of House Music",
+        "part": 6,
+        "totalParts": 8
+      }
+    },
+    {
+      "id": "origins-house-music-7",
+      "title": "Origins of House Music - Part 7",
+      "category": "music-theory",
+      "subcategory": "history",
+      "filename": "Origins of House Music-7.pdf",
+      "path": "../docs/Origins of House Music-7.pdf",
+      "description": "Seventh part of the comprehensive Origins of House Music series",
+      "fileSize": "264487 bytes",
+      "tags": ["house", "music-history", "electronic-music", "series"],
+      "version": "1.0",
+      "series": {
+        "name": "Origins of House Music",
+        "part": 7,
+        "totalParts": 8
+      }
+    },
+    {
+      "id": "origins-house-music-8",
+      "title": "Origins of House Music - Part 8",
+      "category": "music-theory",
+      "subcategory": "history",
+      "filename": "Origins of House Music-8.pdf",
+      "path": "../docs/Origins of House Music-8.pdf",
+      "description": "Final part of the comprehensive Origins of House Music series",
+      "fileSize": "293106 bytes",
+      "tags": ["house", "music-history", "electronic-music", "series"],
+      "version": "1.0",
+      "series": {
+        "name": "Origins of House Music",
+        "part": 8,
+        "totalParts": 8
+      }
+    },
+    {
+      "id": "standard-vs-camelot-notation-1",
+      "title": "Standard vs Camelot Notation - Part 1",
+      "category": "notation",
+      "subcategory": "systems",
+      "filename": "Standard vs Camelot Notation-1.pdf",
+      "path": "../docs/Standard vs Camelot Notation-1.pdf",
+      "description": "Comprehensive comparison of Standard and Camelot key notation systems - Part 1",
+      "fileSize": "271382 bytes",
+      "tags": ["notation", "camelot", "key-notation", "dj-tools", "music-theory"],
+      "version": "1.0",
+      "series": {
+        "name": "Standard vs Camelot Notation",
+        "part": 1,
+        "totalParts": 2
+      }
+    },
+    {
+      "id": "standard-vs-camelot-notation-2",
+      "title": "Standard vs Camelot Notation - Part 2",
+      "category": "notation",
+      "subcategory": "systems",
+      "filename": "Standard vs Camelot Notation-2.pdf",
+      "path": "../docs/Standard vs Camelot Notation-2.pdf",
+      "description": "Comprehensive comparison of Standard and Camelot key notation systems - Part 2",
+      "fileSize": "271700 bytes",
+      "tags": ["notation", "camelot", "key-notation", "dj-tools", "music-theory"],
+      "version": "1.0",
+      "series": {
+        "name": "Standard vs Camelot Notation",
+        "part": 2,
+        "totalParts": 2
+      }
+    },
+    {
+      "id": "doroty-swatch",
+      "title": "Dorothy Color Swatch",
+      "category": "visual",
+      "subcategory": "design",
+      "filename": "Doroty swatch.png",
+      "path": "../docs/Doroty swatch.png",
+      "description": "Color swatch and palette for the Dorothy/Dorthi interface design system",
+      "fileSize": "54480 bytes",
+      "tags": ["visual", "design", "color-palette", "ui", "branding"],
+      "version": "1.0"
+    },
+    {
+      "id": "palette-ase",
+      "title": "Color Palette (Adobe Swatch)",
+      "category": "visual",
+      "subcategory": "design",
+      "filename": "palette(1).ase",
+      "path": "../docs/palette(1).ase",
+      "description": "Adobe Swatch Exchange file for color palette integration",
+      "fileSize": "432 bytes",
+      "tags": ["visual", "design", "color-palette", "adobe", "swatch"],
+      "version": "1.0"
+    },
+    {
+      "id": "palette-pdf",
+      "title": "Color Palette Documentation",
+      "category": "visual",
+      "subcategory": "design",
+      "filename": "palette-5.pdf",
+      "path": "../docs/palette-5.pdf",
+      "description": "PDF documentation of color palette specifications",
+      "fileSize": "26327 bytes",
+      "tags": ["visual", "design", "color-palette", "documentation"],
+      "version": "5.0"
+    },
+    {
+      "id": "palette-txt",
+      "title": "Color Palette Text Reference",
+      "category": "visual",
+      "subcategory": "design",
+      "filename": "palette.txt",
+      "path": "../docs/palette.txt",
+      "description": "Plain text reference for color palette values",
+      "fileSize": "4274 bytes",
+      "tags": ["visual", "design", "color-palette", "reference"],
+      "version": "1.0"
+    },
+    {
+      "id": "sss-document",
+      "title": "SSS Reference Document",
+      "category": "reference",
+      "subcategory": "general",
+      "filename": "sss.pdf",
+      "path": "../docs/sss.pdf",
+      "description": "General reference document",
+      "fileSize": "26994 bytes",
+      "tags": ["reference", "documentation"],
+      "version": "1.0"
+    }
+  ],
+  "categories": [
+    {
+      "id": "ai",
+      "name": "AI & Companion Systems",
+      "description": "Documentation for AI companion systems and integrations"
+    },
+    {
+      "id": "music-theory",
+      "name": "Music Theory & History",
+      "description": "Music theory, history, and educational resources"
+    },
+    {
+      "id": "notation",
+      "name": "Notation Systems",
+      "description": "Music notation systems and reference guides"
+    },
+    {
+      "id": "visual",
+      "name": "Visual Resources",
+      "description": "Design resources, color palettes, and visual assets"
+    },
+    {
+      "id": "reference",
+      "name": "General Reference",
+      "description": "General reference materials and documentation"
+    }
+  ],
+  "series": [
+    {
+      "name": "Origins of House Music",
+      "totalParts": 8,
+      "description": "Comprehensive multi-part series on the origins and evolution of House music"
+    },
+    {
+      "name": "Standard vs Camelot Notation",
+      "totalParts": 2,
+      "description": "Complete guide comparing standard and Camelot key notation systems"
+    }
+  ]
+}
